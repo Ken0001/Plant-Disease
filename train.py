@@ -21,6 +21,18 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report, precision_score, confusion_matrix
 from keras.applications.vgg16 import VGG16
 from keras import optimizers
+
+### 限制gpu使用率30%
+import tensorflow as tf
+
+# 只使用 30% 的 GPU 記憶體
+gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.3)
+sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
+
+# 設定 Keras 使用的 TensorFlow Session
+tf.keras.backend.set_session(sess)
+###
+
 # 5 classes contain healthy
 DATASET = "4class"
 classes = 4

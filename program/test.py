@@ -44,3 +44,4 @@ record.set_index("Image", inplace=True)
 record = record.sort_values(by="Image")
 print(record)
 
+record.to_csv("Result.csv")
