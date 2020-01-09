@@ -1,3 +1,10 @@
+import os
+import sys
+stderr = sys.stderr
+sys.stderr = open(os.devnull, 'w')
+import keras
+sys.stderr = stderr
+
 from keras.models import Sequential
 from keras.layers.normalization import BatchNormalization
 from keras.layers.convolutional import Conv2D
@@ -9,7 +16,7 @@ from keras.optimizers import Adam
 height = 224
 width = 224
 depth = 3
-classes = 4
+classes = 5
 
 inputShape = (height, width, depth)
 chanDim = -1
@@ -47,4 +54,4 @@ model.add(Dropout(0.5))
 model.add(Dense(classes))
 model.add(Activation("softmax"))
 opt = Adam(lr=1e-3)
-model.compile(loss="categorical_crossentropy", optimizer=opt,metrics=["categorical_accuracy"])
+model.compile(loss="categorical_crossentropy", optimizer=opt, metrics=["categorical_accuracy"])
